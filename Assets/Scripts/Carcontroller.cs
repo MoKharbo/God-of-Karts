@@ -70,6 +70,7 @@ public class Carcontroller : MonoBehaviour
         ApplySteering();
         ApplyMotor();
         ApplyBrake();
+        rb.AddForce(transform.forward * 5000f);
     }
 
     void CheckInput()
@@ -81,7 +82,7 @@ public class Carcontroller : MonoBehaviour
 
         if (slipAngle < 120f)
         {
-            if (gasInput < 0)
+            if (gasInput < 0.5)
             {
                 brakeInput = Mathf.Abs(gasInput);
                 gasInput = 0;
@@ -113,8 +114,8 @@ public class Carcontroller : MonoBehaviour
     {
         colliders.FrontRightWheel.brakeTorque = brakeInput * brakePower * 0.7f;
         colliders.FrontLeftWheel.brakeTorque = brakeInput * brakePower * 0.7f;
-        colliders.RearRightWheel.brakeTorque = brakeInput * brakePower * 0.3f;
-        colliders.RearLeftWheel.brakeTorque = brakeInput * brakePower * 0.3f;
+        colliders.RearRightWheel.brakeTorque = brakeInput * brakePower * 0.7f;
+        colliders.RearLeftWheel.brakeTorque = brakeInput * brakePower * 0.7f;
     }
 
     void ApplyMotor()
