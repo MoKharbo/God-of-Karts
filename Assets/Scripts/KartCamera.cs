@@ -1,7 +1,7 @@
 using UnityEngine;
     public class KartCamera : MonoBehaviour
     {
-        public Kart Kart;
+        public Carcontroller Kart;
 
         public Vector3 OffsetPosition = new Vector3(0f, 2f, -5f);
 

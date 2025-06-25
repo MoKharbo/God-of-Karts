@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,9 @@ public class InputSystemKartInput : KartInput
     private float _brake;
     private float _steering;
     private bool _drift;
+
+    public ParticleSystem driftParticles;
+    public ParticleSystem driftParticles2;
 
     private Color _originalColor;
     private Material _carMaterial;
@@ -59,6 +63,20 @@ public class InputSystemKartInput : KartInput
         {
             Color targetColor = _drift ? driftColor : _originalColor;
             _carMaterial.color = Color.Lerp(_carMaterial.color, targetColor, Time.deltaTime * colorLerpSpeed);
+        }
+
+        if (driftParticles != null)
+        {
+            if (_drift && !driftParticles.isPlaying)
+            {
+                driftParticles.Play();
+                driftParticles2.Play();
+            }
+            else if (!_drift && driftParticles.isPlaying)
+            {
+                driftParticles.Stop();
+                driftParticles2.Stop();
+            }
         }
     }
 
