@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TimeTrialManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TimeTrialManager : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI resultText;
+    public Image screenFlashImage; // Assign in inspector
 
     [Header("Scene Settings")]
     public string winSceneName = "NextScene";
@@ -21,12 +23,18 @@ public class TimeTrialManager : MonoBehaviour
     private float timer = 0f;
     private bool gameEnded = false;
 
+    private Color normalColor = Color.white;
+    private Color warningColor = Color.red;
+    private float warningThreshold = 10f;
+
     void Start()
     {
         timer = 0f;
         currentLap = 0;
         resultText.text = "";
         timerText.transform.localScale = Vector3.one;
+        if (screenFlashImage != null)
+            screenFlashImage.color = Color.clear;
     }
 
     void Update()
@@ -37,6 +45,9 @@ public class TimeTrialManager : MonoBehaviour
 
         float timeLeft = Mathf.Max(0, timeLimit - timer);
         timerText.text = $"Time: {timeLeft:F1}s";
+
+        // Change text color when time is low
+        timerText.color = (timeLeft <= warningThreshold) ? warningColor : normalColor;
 
         if (timeLeft <= 0f && currentLap < 5)
         {
@@ -51,14 +62,12 @@ public class TimeTrialManager : MonoBehaviour
         if (lapIndex == currentLap + 1)
         {
             currentLap++;
-
-            // Add extra time for completing a lap
             timeLimit += timeBonusPerLap;
 
             Debug.Log($"Lap {currentLap} completed. Time extended by {timeBonusPerLap} seconds.");
 
-            // Trigger bounce effect on timer
             StartCoroutine(BounceText(timerText));
+            StartCoroutine(FlashScreen());
 
             if (currentLap >= 5)
             {
@@ -77,7 +86,6 @@ public class TimeTrialManager : MonoBehaviour
 
         float timer = 0f;
 
-        // Scale up
         while (timer < duration / 2f)
         {
             float t = timer / (duration / 2f);
@@ -88,7 +96,6 @@ public class TimeTrialManager : MonoBehaviour
 
         timer = 0f;
 
-        // Scale back down
         while (timer < duration / 2f)
         {
             float t = timer / (duration / 2f);
@@ -98,6 +105,32 @@ public class TimeTrialManager : MonoBehaviour
         }
 
         text.transform.localScale = originalScale;
+    }
+
+    private IEnumerator FlashScreen()
+    {
+        if (screenFlashImage == null) yield break;
+
+        float duration = 0.5f;
+        Color flashColor = new Color(0.2f, 0.6f, 1f, 0.5f); // Soft blue with transparency
+
+        float timer = 0f;
+        while (timer < duration / 2f)
+        {
+            screenFlashImage.color = Color.Lerp(Color.clear, flashColor, timer / (duration / 2f));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        timer = 0f;
+        while (timer < duration / 2f)
+        {
+            screenFlashImage.color = Color.Lerp(flashColor, Color.clear, timer / (duration / 2f));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        screenFlashImage.color = Color.clear;
     }
 
     private void Win()
