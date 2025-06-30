@@ -70,7 +70,10 @@ public class Carcontroller : MonoBehaviour
         ApplySteering();
         ApplyMotor();
         ApplyBrake();
-        rb.AddForce(transform.forward * 5000f);
+        if (gasInput > 0f)
+        {
+            rb.AddForce(transform.forward * 5000f);
+        }
     }
 
     void CheckInput()
