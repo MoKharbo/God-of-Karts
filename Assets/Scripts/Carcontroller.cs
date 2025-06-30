@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Carcontroller : MonoBehaviour
@@ -14,9 +15,15 @@ public class Carcontroller : MonoBehaviour
     [SerializeField] private float brakeInput;
 
     [SerializeField] private float maxSteerAngle = 35f;
-    [SerializeField] private float maxSpeed = 20f;
+    [SerializeField] private float maxSpeed = 50f;
 
     [SerializeField] private float speed;
+
+    public KeyCode driftKey = KeyCode.Space;
+    private float driftAmount = 0f;
+    [SerializeField] private float driftLerpSpeed = 5f;
+
+    public bool isDrifting => Input.GetKey(driftKey);
     private float slipAngle;
 
     // Properties for the camera script
@@ -26,8 +33,6 @@ public class Carcontroller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        SetArcadeFriction(colliders.FrontLeftWheel);
-        SetArcadeFriction(colliders.FrontRightWheel);
     }
 
     void Update()
@@ -35,6 +40,12 @@ public class Carcontroller : MonoBehaviour
         speed = rb.linearVelocity.magnitude;
         ApplyWheelPositions();
         Debug.Log($"Motor Torque: {gasInput * motorPower}, Grounded: {colliders.RearLeftWheel.isGrounded && colliders.RearRightWheel.isGrounded}");
+        SetArcadeFriction(colliders.FrontLeftWheel);
+        SetArcadeFriction(colliders.FrontRightWheel);
+        SetArcadeFriction2(colliders.RearLeftWheel);
+        SetArcadeFriction2(colliders.RearRightWheel);
+        float target = isDrifting ? 1f : 0f;
+        driftAmount = Mathf.MoveTowards(driftAmount, target, Time.deltaTime * driftLerpSpeed);
     }
 
     void FixedUpdate()
@@ -70,9 +81,18 @@ public class Carcontroller : MonoBehaviour
         ApplySteering();
         ApplyMotor();
         ApplyBrake();
-        if (gasInput > 0f)
+        if (gasInput > 0f && !isDrifting)
         {
             rb.AddForce(transform.forward * 5000f);
+        }
+        if (gasInput > 0f && isDrifting)
+        {
+            rb.AddForce(transform.forward * 10000f);
+            maxSpeed = 70f;
+        }
+        else
+        {
+            maxSpeed = 50f;
         }
     }
 
@@ -104,14 +124,48 @@ public class Carcontroller : MonoBehaviour
     void SetArcadeFriction(WheelCollider wheel)
     {
         var forward = wheel.forwardFriction;
-        // You can tweak stiffness here if you want arcade-like friction
-        // forward.stiffness = 2f;
-        wheel.forwardFriction = forward;
-
         var sideways = wheel.sidewaysFriction;
-        // sideways.stiffness = 2f;
+
+        forward.stiffness = Mathf.Lerp(3f, 4.5f, driftAmount);
+        forward.extremumSlip = Mathf.Lerp(0.4f, 0.8f, driftAmount);
+        forward.extremumValue = Mathf.Lerp(1f, 0.85f, driftAmount);
+        forward.asymptoteSlip = Mathf.Lerp(0.8f, 1.6f, driftAmount);
+        forward.asymptoteValue = Mathf.Lerp(0.5f, 0.25f, driftAmount);
+
+        // SIDEWAYS FRICTION
+        sideways.stiffness = Mathf.Lerp(3f, 4.5f, driftAmount);
+        sideways.extremumSlip = Mathf.Lerp(0.4f, 0.8f, driftAmount);
+        sideways.extremumValue = Mathf.Lerp(1f, 0.85f, driftAmount);
+        sideways.asymptoteSlip = Mathf.Lerp(0.8f, 1.6f, driftAmount);
+        sideways.asymptoteValue = Mathf.Lerp(0.5f, 0.25f, driftAmount);
+
+        wheel.forwardFriction = forward;
         wheel.sidewaysFriction = sideways;
     }
+
+
+    void SetArcadeFriction2(WheelCollider wheel)
+    {
+        var forward = wheel.forwardFriction;
+        var sideways = wheel.sidewaysFriction;
+
+        forward.stiffness = Mathf.Lerp(1f, 1f, driftAmount);
+        forward.extremumSlip = Mathf.Lerp(0.4f, 1f, driftAmount);
+        forward.extremumValue = Mathf.Lerp(1f, 0.8f, driftAmount);
+        forward.asymptoteSlip = Mathf.Lerp(0.8f, 1.8f, driftAmount);
+        forward.asymptoteValue = Mathf.Lerp(0.5f, 0.2f, driftAmount);
+
+        // SIDEWAYS FRICTION
+        sideways.stiffness = Mathf.Lerp(10f, 9f, driftAmount);
+        sideways.extremumSlip = Mathf.Lerp(0.4f, 1.2f, driftAmount);
+        sideways.extremumValue = Mathf.Lerp(1f, 0.8f, driftAmount);
+        sideways.asymptoteSlip = Mathf.Lerp(1f, 2f, driftAmount);
+        sideways.asymptoteValue = Mathf.Lerp(0.5f, 0.2f, driftAmount);
+
+        wheel.forwardFriction = forward;
+        wheel.sidewaysFriction = sideways;
+    }
+
 
     void ApplyBrake()
     {
