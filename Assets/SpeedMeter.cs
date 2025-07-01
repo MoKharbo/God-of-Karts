@@ -1,35 +1,27 @@
 using UnityEngine;
-using TMPro;
 
 public class SpeedMeter : MonoBehaviour
 {
-    [SerializeField] private Carcontroller carController;  // Reference to your car controller
-    private TextMeshProUGUI textMeshPro;
+    [SerializeField] private Carcontroller carController;   
+    [SerializeField] private RectTransform needle;          
 
-    // Conversion factor from Unity units (m/s) to km/h
+    [SerializeField] private float startX = -100f;          
+    [SerializeField] private float endX = 100f;             
+    [SerializeField] private float maxSpeed = 200f;         
+
     private const float metersPerSecondToKmH = 3.6f;
-
-    void Start()
-    {
-        textMeshPro = GetComponent<TextMeshProUGUI>();
-
-        if (carController == null)
-        {
-            Debug.LogError("SpeedMeter: Carcontroller reference not set!");
-        }
-    }
 
     void Update()
     {
-        if (carController == null) return;
+        if (carController == null || needle == null) return;
 
-        // Get speed magnitude from carController's Rigidbody velocity
-        float speedMetersPerSecond = carController.GetComponent<Rigidbody>().linearVelocity.magnitude;
+        float speedMps = carController.GetComponent<Rigidbody>().linearVelocity.magnitude;
+        float speedKmH = speedMps * metersPerSecondToKmH;
 
-        // Convert speed to km/h
-        float speedKmH = speedMetersPerSecond * metersPerSecondToKmH;
+        float normalizedSpeed = Mathf.Clamp01(speedKmH / maxSpeed);
 
-        // Update UI text, round to int for display
-        textMeshPro.text = "Speed: " + Mathf.RoundToInt(speedKmH).ToString() + " km/h";
+        Vector3 pos = needle.localPosition;
+        pos.x = Mathf.Lerp(startX, endX, normalizedSpeed);
+        needle.localPosition = pos;
     }
 }

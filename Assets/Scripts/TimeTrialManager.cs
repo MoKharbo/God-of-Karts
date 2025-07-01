@@ -21,7 +21,7 @@ public class TimeTrialManager : MonoBehaviour
     public string loseSceneName = "MainMenu";
 
     private int currentLap = 0;
-    private float timer = 0f;
+    public float timer = 0f;
     private bool gameEnded = false;
     private bool lap5Completed = false;
 

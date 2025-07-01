@@ -7,17 +7,18 @@ public class Carcontroller : MonoBehaviour
 
     [SerializeField] private WheelColliders colliders;
     [SerializeField] private WheelMeshes meshes;
-
-    [SerializeField] private float gasInput;
+    [SerializeField] private Enemymovement Enemymovement;
+    public float gasInput;
     public float steeringInput;
     [SerializeField] private float motorPower;
     [SerializeField] private float brakePower;
     [SerializeField] private float brakeInput;
 
     [SerializeField] private float maxSteerAngle = 35f;
-    [SerializeField] private float maxSpeed = 50f;
+    private float baseMaxSpeed = 50f;
+    public float maxSpeed = 50f;
 
-    [SerializeField] private float speed;
+    public float speed;
 
     public KeyCode driftKey = KeyCode.Space;
     private float driftAmount = 0f;
@@ -93,6 +94,19 @@ public class Carcontroller : MonoBehaviour
         else
         {
             maxSpeed = 50f;
+        }
+        float driftSpeed = isDrifting ? 70f : maxSpeed;
+
+        if (rb.linearVelocity.magnitude > driftSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * driftSpeed;
+        }
+
+        // Apply force accordingly
+        if (gasInput > 0f)
+        {
+            float force = isDrifting ? 10000f : 5000f;
+            rb.AddForce(transform.forward * force);
         }
     }
 
