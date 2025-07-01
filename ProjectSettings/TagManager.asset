@@ -7,7 +7,6 @@ TagManager:
   - LapTrigger
   - Wall
   - Enemy
-  - Axe
   layers:
   - Default
   - TransparentFX

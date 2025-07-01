@@ -64,10 +64,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axeblend_low
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 23e271720e135764496e5aa709190f37, type: 3}
-      propertyPath: m_TagString
-      value: Axe
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -103,6 +99,7 @@ MonoBehaviour:
   returnDelay: 1.5
   returnSpeed: 25
   spinSpeed: 1000
+  forwardForce: 20
 --- !u!54 &9162352800049990800
 Rigidbody:
   m_ObjectHideFlags: 0

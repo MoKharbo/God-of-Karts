@@ -3,7 +3,6 @@ using UnityEngine;
 public class BoomerangLauncher : MonoBehaviour
 {
     [Header("Boomerang Settings")]
-    [SerializeField] private Scoredrift score;
     public GameObject boomerangPrefab;
     public Transform boomerangSpawnPoint;
     public float throwForce = 100f;
@@ -24,9 +23,8 @@ public class BoomerangLauncher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(throwKey) && canThrow && boomerangPrefab != null && boomerangSpawnPoint != null && score.score >= 1500)
+        if (Input.GetKeyDown(throwKey) && canThrow && boomerangPrefab != null && boomerangSpawnPoint != null)
         {
-            score.score -= 1500;
             ThrowBoomerang();
         }
     }

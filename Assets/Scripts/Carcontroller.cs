@@ -49,7 +49,6 @@ public class Carcontroller : MonoBehaviour
         // Handle boost input
         if (Input.GetKeyDown(boostKey) && !isBoosting && score.score >= 1000)
         {
-            score.score -= 1000; // Deduct score for boost
             StartBoost();
         }
 
@@ -162,7 +161,7 @@ public class Carcontroller : MonoBehaviour
         isBoosting = false;
         maxSpeed -= boostAmount;
         Debug.Log("BOOST ENDED");
-
+        score.score -= 1000; // Deduct score for using boost
     }
 
     void SetArcadeFriction(WheelCollider wheel)

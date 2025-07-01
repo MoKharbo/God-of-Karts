@@ -24,10 +24,6 @@ public class enemyspanwer : MonoBehaviour
             SpawnEnemy();
             hasSpawned = true;
         }
-        else if (timeLeft > triggerThreshold && hasSpawned)
-        {
-            hasSpawned = false; // Reset if time goes above threshold again
-        }
     }
 
     private void SpawnEnemy()
