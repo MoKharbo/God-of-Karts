@@ -16425,7 +16425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
       propertyPath: driftOffset.z
-      value: -6.5
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
       propertyPath: offsetLerpSpeed

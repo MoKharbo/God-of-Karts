@@ -171,9 +171,9 @@ public class Carcontroller : MonoBehaviour
 
         // SIDEWAYS FRICTION
         sideways.stiffness = Mathf.Lerp(10f, 9f, driftAmount);
-        sideways.extremumSlip = Mathf.Lerp(0.4f, 1.2f, driftAmount);
+        sideways.extremumSlip = Mathf.Lerp(0.4f, 1.1f, driftAmount);
         sideways.extremumValue = Mathf.Lerp(1f, 0.8f, driftAmount);
-        sideways.asymptoteSlip = Mathf.Lerp(1f, 2f, driftAmount);
+        sideways.asymptoteSlip = Mathf.Lerp(1f, 2.2f, driftAmount);
         sideways.asymptoteValue = Mathf.Lerp(0.5f, 0.2f, driftAmount);
 
         wheel.forwardFriction = forward;
