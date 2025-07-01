@@ -24,7 +24,7 @@ public class Scoredrift : MonoBehaviour
         
         if (scoreText != null)
         {
-            scoreText.text = "Drift Score: " + score;
+            scoreText.text = "DriftScore: " + score;
         }
     }
 }
