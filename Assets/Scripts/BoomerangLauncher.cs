@@ -3,6 +3,7 @@ using UnityEngine;
 public class BoomerangLauncher : MonoBehaviour
 {
     [Header("Boomerang Settings")]
+    [SerializeField] private Scoredrift score;
     public GameObject boomerangPrefab;
     public Transform boomerangSpawnPoint;
     public float throwForce = 100f;
