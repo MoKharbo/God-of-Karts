@@ -13,7 +13,7 @@ public class LapTrigger : MonoBehaviour
             if (manager != null)
             {
                 manager.RegisterLap(lapIndex);
-             
+                gameObject.SetActive(false); // Optional: Disable after triggering
             }
         }
     }

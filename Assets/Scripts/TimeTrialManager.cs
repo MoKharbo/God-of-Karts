@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
@@ -14,16 +14,14 @@ public class TimeTrialManager : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI resultText;
-    public Image screenFlashImage;
+    public Image screenFlashImage; // Assign in inspector
 
     [Header("Scene Settings")]
     public string winSceneName = "NextScene";
-    public string loseSceneName = "MainMenu";
 
     private int currentLap = 0;
     private float timer = 0f;
     private bool gameEnded = false;
-    private bool lap5Completed = false;
 
     private Color normalColor = Color.white;
     private Color warningColor = Color.red;
@@ -33,7 +31,6 @@ public class TimeTrialManager : MonoBehaviour
     {
         timer = 0f;
         currentLap = 0;
-        lap5Completed = false;
         resultText.text = "";
         timerText.transform.localScale = Vector3.one;
         if (screenFlashImage != null)
@@ -49,9 +46,10 @@ public class TimeTrialManager : MonoBehaviour
         float timeLeft = Mathf.Max(0, timeLimit - timer);
         timerText.text = $"Time: {timeLeft:F1}s";
 
+        // Change text color when time is low
         timerText.color = (timeLeft <= warningThreshold) ? warningColor : normalColor;
 
-        if (timeLeft <= 0f && currentLap < 10)
+        if (timeLeft <= 0f && currentLap < 5)
         {
             Lose();
         }
@@ -60,13 +58,6 @@ public class TimeTrialManager : MonoBehaviour
     public void RegisterLap(int lapIndex)
     {
         if (gameEnded) return;
-
-        // FULL BLOCK: no laps beyond 5 allowed until lap 5 completed
-        if (lapIndex > 5 && !lap5Completed)
-        {
-            Debug.LogWarning($"Lap {lapIndex} ignored: lap 5 not completed yet.");
-            return;
-        }
 
         if (lapIndex == currentLap + 1)
         {
@@ -78,13 +69,7 @@ public class TimeTrialManager : MonoBehaviour
             StartCoroutine(BounceText(timerText));
             StartCoroutine(FlashScreen());
 
-            if (currentLap == 5)
-            {
-                lap5Completed = true;
-                Debug.Log("Lap 5 completed! Laps 6 to 10 are now active.");
-            }
-
-            if (currentLap >= 10)
+            if (currentLap >= 5)
             {
                 Win();
             }
@@ -127,7 +112,7 @@ public class TimeTrialManager : MonoBehaviour
         if (screenFlashImage == null) yield break;
 
         float duration = 0.5f;
-        Color flashColor = new Color(0.2f, 0.6f, 1f, 0.5f);
+        Color flashColor = new Color(0.2f, 0.6f, 1f, 0.5f); // Soft blue with transparency
 
         float timer = 0f;
         while (timer < duration / 2f)
@@ -159,38 +144,10 @@ public class TimeTrialManager : MonoBehaviour
     {
         gameEnded = true;
         resultText.text = "You Lose!";
-        StartCoroutine(FadeToBlackAndReturnToMenu());
     }
 
     private void LoadWinScene()
     {
         SceneManager.LoadScene(winSceneName);
-    }
-
-    private IEnumerator FadeToBlackAndReturnToMenu(float fadeDuration = 2f, float waitAfterFade = 1f)
-    {
-        if (screenFlashImage == null)
-        {
-            yield return new WaitForSeconds(fadeDuration + waitAfterFade);
-            SceneManager.LoadScene(loseSceneName);
-            yield break;
-        }
-
-        float timer = 0f;
-        Color startColor = screenFlashImage.color;
-        Color targetColor = Color.black;
-        targetColor.a = 1f;
-
-        while (timer < fadeDuration)
-        {
-            screenFlashImage.color = Color.Lerp(startColor, targetColor, timer / fadeDuration);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        screenFlashImage.color = targetColor;
-
-        yield return new WaitForSeconds(waitAfterFade);
-        SceneManager.LoadScene(loseSceneName);
     }
 }
