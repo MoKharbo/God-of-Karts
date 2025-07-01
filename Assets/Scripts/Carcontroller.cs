@@ -13,12 +13,7 @@ public class Carcontroller : MonoBehaviour
     [SerializeField] private float motorPower;
     [SerializeField] private float brakePower;
     [SerializeField] private float brakeInput;
-    [SerializeField] private float boostAmount = 20f;
-    [SerializeField] private float boostDuration = 4f;
-    private bool isBoosting = false;
-    private float boostEndTime = 0f;
-    public KeyCode boostKey = KeyCode.R;
-    [SerializeField] Scoredrift score;
+
     [SerializeField] private float maxSteerAngle = 35f;
     private float baseMaxSpeed = 50f;
     public float maxSpeed = 50f;
@@ -45,27 +40,11 @@ public class Carcontroller : MonoBehaviour
     {
         speed = rb.linearVelocity.magnitude;
         ApplyWheelPositions();
-
-        // Handle boost input
-        if (Input.GetKeyDown(boostKey) && !isBoosting && score.score >= 1000)
-        {
-            score.score -= 1000; // Deduct score for boost
-            StartBoost();
-        }
-
-        // End boost if time expired
-        if (isBoosting && Time.time >= boostEndTime)
-        {
-            EndBoost();
-        }
-
         Debug.Log($"Motor Torque: {gasInput * motorPower}, Grounded: {colliders.RearLeftWheel.isGrounded && colliders.RearRightWheel.isGrounded}");
-
         SetArcadeFriction(colliders.FrontLeftWheel);
         SetArcadeFriction(colliders.FrontRightWheel);
         SetArcadeFriction2(colliders.RearLeftWheel);
         SetArcadeFriction2(colliders.RearRightWheel);
-
         float target = isDrifting ? 1f : 0f;
         driftAmount = Mathf.MoveTowards(driftAmount, target, Time.deltaTime * driftLerpSpeed);
     }
@@ -107,14 +86,20 @@ public class Carcontroller : MonoBehaviour
         {
             rb.AddForce(transform.forward * 5000f);
         }
-        float baseMax = isDrifting ? 70f : 50f;
-        float effectiveMaxSpeed = baseMax + (isBoosting ? boostAmount : 0f);
-        maxSpeed = effectiveMaxSpeed;
+        if (gasInput > 0f && isDrifting)
+        {
+            rb.AddForce(transform.forward * 10000f);
+            maxSpeed = 70f;
+        }
+        else
+        {
+            maxSpeed = 50f;
+        }
         float driftSpeed = isDrifting ? 70f : maxSpeed;
 
-        if (rb.linearVelocity.magnitude > maxSpeed)
+        if (rb.linearVelocity.magnitude > driftSpeed)
         {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            rb.linearVelocity = rb.linearVelocity.normalized * driftSpeed;
         }
 
         // Apply force accordingly
@@ -148,21 +133,6 @@ public class Carcontroller : MonoBehaviour
         {
             brakeInput = 0;
         }
-    }
-    void StartBoost()
-    {
-        isBoosting = true;
-        boostEndTime = Time.time + boostDuration;
-        maxSpeed += boostAmount;
-        Debug.Log("BOOST STARTED");
-    }
-
-    void EndBoost()
-    {
-        isBoosting = false;
-        maxSpeed -= boostAmount;
-        Debug.Log("BOOST ENDED");
-
     }
 
     void SetArcadeFriction(WheelCollider wheel)

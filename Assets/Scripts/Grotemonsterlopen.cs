@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Grotemonsterlopen : MonoBehaviour
 {
+    [SerializeField] private Carcontroller Carcontroller;
     public Transform start;
     public Transform end;
     [SerializeField] private float moveSpeed = 1f;

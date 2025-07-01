@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Destroyenemy : MonoBehaviour
+public class destroyenemy : MonoBehaviour
 {
     public float shakeAmount = 0.1f;
     public float shakeSpeed = 10f;
