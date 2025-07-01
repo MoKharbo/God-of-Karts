@@ -5042,6 +5042,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
+      propertyPath: driftOffset.z
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
+      propertyPath: offsetLerpSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
       propertyPath: OffsetPosition.y
       value: 3
       objectReference: {fileID: 0}
@@ -5640,6 +5648,22 @@ PrefabInstance:
     - target: {fileID: 4044805934757734797, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
       propertyPath: m_Name
       value: Kart2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
+      propertyPath: driftForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
+      propertyPath: driftLerpSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
+      propertyPath: driftStiffness
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
+      propertyPath: normalStiffness
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
