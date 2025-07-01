@@ -24,9 +24,9 @@ public class BoomerangLauncher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(throwKey) && canThrow && boomerangPrefab != null && boomerangSpawnPoint != null && score.score >= 1500)
+        if (Input.GetKeyDown(throwKey) && canThrow && boomerangPrefab != null && boomerangSpawnPoint != null && score.score >= 300)
         {
-            score.score -= 1500;
+            score.score -= 300;
             ThrowBoomerang();
         }
     }
