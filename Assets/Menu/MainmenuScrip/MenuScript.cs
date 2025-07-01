@@ -25,7 +25,7 @@ public class MenuScript : MonoBehaviour
 
     public void Maps()
     {
-        SceneManager.LoadScene("Maps"); // Make sure a scene named "Credits" exists in Build Settings
+        SceneManager.LoadScene("Maps"); // Make sure a scene named "Maps" exists in Build Settings
         Debug.Log("Loading Maps...");
     }
 
@@ -33,5 +33,18 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu"); // Replace with your actual main menu scene name
         Debug.Log("Returning to Main Menu...");
+    }
+
+    // New methods to load specific scenes from Options
+    public void LoadScene1()
+    {
+        SceneManager.LoadScene(1); // Replace with your scene name if preferred
+        Debug.Log("Loading Scene with BuildIndex 1...");
+    }
+
+    public void LoadScene3()
+    {
+        SceneManager.LoadScene(3); // Replace with your scene name if preferred
+        Debug.Log("Loading Scene with BuildIndex 3...");
     }
 }
