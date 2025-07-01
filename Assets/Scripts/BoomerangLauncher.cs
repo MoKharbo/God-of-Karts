@@ -9,7 +9,7 @@ public class BoomerangLauncher : MonoBehaviour
     public float throwForce = 100f;
     public KeyCode throwKey = KeyCode.F;
     public float cooldownTime = 4f;
-    [SerializeField] private Scoredrift score;
+
     private bool canThrow = true;
     private Rigidbody kartRb;
 
