@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afef7139f075e54798735bd5cf8cd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lapIndex: 1
+  lapIndex: 3
 --- !u!65 &47287431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6020,6 +6020,10 @@ PrefabInstance:
     - target: {fileID: 4044805934757734797, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
       propertyPath: m_Name
       value: Kart2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
+      propertyPath: driftLerpSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16418,10 +16422,10 @@ PrefabInstance:
     - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
       propertyPath: Kart
       value: 
-      objectReference: {fileID: 1685382659}
+      objectReference: {fileID: 0}
     - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
       propertyPath: driftOffset.z
-      value: -7
+      value: -6.5
       objectReference: {fileID: 0}
     - target: {fileID: 2062313803339594040, guid: 69a5765005fdb0048a5272fbd3acc4e7, type: 3}
       propertyPath: offsetLerpSpeed
@@ -16837,82 +16841,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292139797}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &297748994
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 26.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 8.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.76025957
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.64961946
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -81.026
-      objectReference: {fileID: 0}
-    - target: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044805934757734797, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: m_Name
-      value: Kart2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: driftForce
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: driftLerpSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: driftStiffness
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6047713834358913262, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      propertyPath: normalStiffness
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 108339011}
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
 --- !u!1001 &300918910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18724,6 +18652,9 @@ MonoBehaviour:
   Kart: {fileID: 506130734}
   OffsetPosition: {x: 0, y: 2.4, z: -5}
   OffsetRotation: {x: 0, y: 0, z: 0}
+  normalOffset: {x: 0, y: 3, z: -5.5}
+  driftOffset: {x: 0, y: 3, z: -8}
+  offsetLerpSpeed: 5
   ChaseDistance: 1
   KartFitRatio: 0.5
   TiltAngleSmoothing: 1
@@ -27535,7 +27466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afef7139f075e54798735bd5cf8cd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lapIndex: 1
+  lapIndex: 5
 --- !u!65 &1024058416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28443,7 +28374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afef7139f075e54798735bd5cf8cd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lapIndex: 1
+  lapIndex: 2
 --- !u!65 &1095378766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40728,11 +40659,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456411547}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1459746674 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3704731027257701175, guid: 6aa135cd1f190c042888a041adf1f603, type: 3}
-  m_PrefabInstance: {fileID: 297748994}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1467379659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d4f8329444e43084a9432ba45659f89f, type: 3}
@@ -53080,7 +53006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afef7139f075e54798735bd5cf8cd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lapIndex: 1
+  lapIndex: 4
 --- !u!65 &1873825999
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53339,7 +53265,7 @@ Transform:
   - {fileID: 1340446354}
   - {fileID: 986562348}
   - {fileID: 1471211739}
-  - {fileID: 2015846929}
+  - {fileID: 822732828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1940067730
@@ -68841,11 +68767,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ad43d3c1b444784fb15b79277a8e92d, type: 3}
   m_PrefabInstance: {fileID: 1868537872}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2015846929 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7607841488155974851, guid: ba3421ba5a7c1654cbf175aa232f24b8, type: 3}
-  m_PrefabInstance: {fileID: 1174176020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2018548028
 GameObject:
   m_ObjectHideFlags: 0
@@ -75102,3 +75023,4 @@ SceneRoots:
   - {fileID: 1129994322}
   - {fileID: 2009678003}
   - {fileID: 132001968}
+  - {fileID: 275210297}
