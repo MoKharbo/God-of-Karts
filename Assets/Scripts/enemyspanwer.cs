@@ -15,12 +15,17 @@ public class enemyspanwer : MonoBehaviour
     void Update()
     {
         if (hasSpawned || timeTrialManager == null || enemyPrefab == null)
+        {
+            Debug.Log($"Skipping spawn: hasSpawned={hasSpawned}, timeTrialManager={(timeTrialManager != null)}, enemyPrefab={(enemyPrefab != null)}");
             return;
+        }
 
         float timeLeft = Mathf.Max(0, timeTrialManager.timeLimit - timeTrialManager.timer);
+        Debug.Log($"Time left: {timeLeft}");
 
         if (timeLeft <= triggerThreshold)
         {
+            Debug.Log("Time is below threshold, spawning enemy...");
             SpawnEnemy();
             hasSpawned = true;
         }

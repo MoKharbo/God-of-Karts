@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 443dc77d2288eca40b7a5592230ce823, type: 2}
+  - {fileID: 2100000, guid: 870eb96b46e3f0944b90b8c6878b7943, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 443dc77d2288eca40b7a5592230ce823, type: 2}
+  - {fileID: 2100000, guid: 870eb96b46e3f0944b90b8c6878b7943, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,7 +236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 443dc77d2288eca40b7a5592230ce823, type: 2}
+  - {fileID: 2100000, guid: 870eb96b46e3f0944b90b8c6878b7943, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -322,7 +322,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 443dc77d2288eca40b7a5592230ce823, type: 2}
+  - {fileID: 2100000, guid: a278e67ea991e5743acfceef1c14d8f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -408,7 +408,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 443dc77d2288eca40b7a5592230ce823, type: 2}
+  - {fileID: 2100000, guid: 870eb96b46e3f0944b90b8c6878b7943, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -457,7 +457,7 @@ Transform:
   m_GameObject: {fileID: 7536675692343189986}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.268721, y: -0.00000047683716, z: 2.5532155}
+  m_LocalPosition: {x: 121.74457, y: 48.538, z: 102.047676}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -500,6 +500,7 @@ MonoBehaviour:
   PlayerCar: {fileID: 0}
   Player: {fileID: 0}
   Enemy: {fileID: 7536675692343189986}
+  speedMeter: {fileID: 0}
   followDistance: 2.4
   followHeight: 0.8
   followSpeed: 100
