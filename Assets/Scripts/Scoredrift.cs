@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using TMPro.EditorUtilities;
 
 public class Scoredrift : MonoBehaviour
 {
